@@ -61,4 +61,36 @@ public class BookServiceTest {
 
         //then
     }
+
+    @Test
+    public void shouldUserCanCheckoutBookSuccessfullyWhenGivenAnAlreadyCheckoutBook() throws Exception {
+        //given
+        bookService.checkoutBookByName("SICP");
+
+        //when
+        bookService.returnBookByName("SICP");
+
+        //then
+        assertThat(bookService.allExistedBooks().size(), is(3));
+    }
+
+    @Test(expected = BookNotReturnableException.class)
+    public void shouldThrowExceptionWhenGivenHavenotCheckoutedBook() throws Exception {
+        //given
+
+        //when
+        bookService.returnBookByName("SICP");
+
+        //then
+    }
+
+    @Test(expected = BookNotReturnableException.class)
+    public void shouldThrowExceptionWhenGivenNotInLibraryBook() throws Exception {
+        //given
+
+        //when
+        bookService.returnBookByName("Data Structure");
+
+        //then
+    }
 }

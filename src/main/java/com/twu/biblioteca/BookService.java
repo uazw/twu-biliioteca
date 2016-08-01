@@ -25,16 +25,28 @@ public class BookService {
     }
 
     public void checkoutBookByName(String bookName) {
-        Optional<Book> bookWithName = bookInfo.keySet()
-                .stream()
-                .filter(book -> book.getTitle().equals(bookName))
-                .findFirst();
 
-        Book book = bookWithName.orElse(null);
+        Book book = findBookByName(bookName).orElse(null);
         if (book != null && !bookInfo.get(book)) {
             bookInfo.put(book, true);
         } else {
             throw new BookNotAvailableException();
+        }
+    }
+
+    private Optional<Book> findBookByName(String bookName) {
+        return bookInfo.keySet()
+                .stream()
+                .filter(book -> book.getTitle().equals(bookName))
+                .findFirst();
+    }
+
+    public void returnBookByName(String bookName) {
+        Book book = findBookByName(bookName).orElse(null);
+        if (book != null && bookInfo.get(book)) {
+            bookInfo.put(book, false);
+        } else {
+            throw new BookNotReturnableException();
         }
     }
 }
