@@ -7,5 +7,7 @@ repositories {
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile group: 'com.google.guava', name: 'guava', version: '19.0'
+
+    testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
     testCompile 'junit:junit:4.12'
 }
