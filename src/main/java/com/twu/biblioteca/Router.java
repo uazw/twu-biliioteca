@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.page.Page;
+
 import java.util.Map;
 
 public class Router {
