@@ -1,10 +1,9 @@
 package com.twu.biblioteca;
 
-
-public class FirstPage implements Page {
+public class ThirdPage implements Page {
 
     @Override
     public String execute() {
-        return "second";
+        return "";
     }
 }

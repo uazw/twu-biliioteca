@@ -12,7 +12,10 @@ public class Router {
         this.defaultPath = defaultPath;
     }
 
-public void start() {
-        routerMap.get(defaultPath).execute();
+    public void start() {
+        String nextPageName = defaultPath;
+        do {
+            nextPageName = routerMap.get(nextPageName).execute();
+        } while (!nextPageName.equals(""));
     }
 }
