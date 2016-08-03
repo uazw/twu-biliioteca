@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.io.PrintStream;
 
 import static org.hamcrest.core.Is.is;
@@ -27,7 +26,8 @@ public class ListOfBookPageTest {
     @Test
     public void shouldPresentAllAvailableBookWhenJumpToListPage() throws Exception {
         //given
-        listOfBookPage = new ListOfBookPage(bookService, mock(PrintStream.class), mock(InputStream.class));
+        ByteArrayInputStream inputStream = new ByteArrayInputStream("Bookname".getBytes());
+        listOfBookPage = new ListOfBookPage(bookService, mock(PrintStream.class), inputStream);
 
         //when
         listOfBookPage.execute();

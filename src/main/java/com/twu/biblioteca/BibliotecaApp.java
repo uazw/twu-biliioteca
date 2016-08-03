@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.page.CheckoutPage;
 import com.twu.biblioteca.page.ListOfBookPage;
+import com.twu.biblioteca.page.ReturnPage;
 import com.twu.biblioteca.page.WelcomePage;
 
 import static java.lang.System.in;
@@ -17,6 +18,7 @@ public class BibliotecaApp {
                 .path("welcome", new WelcomePage(out))
                 .path("books", new ListOfBookPage(bookService, out, in))
                 .path("checkout", new CheckoutPage(bookService, out, in))
+                .path("return", new ReturnPage(bookService, out, in))
                 .defaultPath("welcome")
                 .build();
 
