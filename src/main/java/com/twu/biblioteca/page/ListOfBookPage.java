@@ -27,11 +27,9 @@ public class ListOfBookPage implements Page {
     }
 
     private String acceptUserInput() {
-        while (scanner.hasNext()) {
-            String input = scanner.next();
-            if (input.equals("back")) {
-                return "menu";
-            }
+        String input = scanner.next();
+        if (input.equals("back")) {
+            return "menu";
         }
         return "";
     }
