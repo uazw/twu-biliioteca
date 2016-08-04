@@ -4,7 +4,6 @@ import com.twu.biblioteca.BookService;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.ByteArrayInputStream;
 import java.io.PrintStream;
 
 import static org.hamcrest.core.Is.is;
@@ -26,8 +25,7 @@ public class ListOfBookPageTest {
     @Test
     public void shouldPresentAllAvailableBookWhenJumpToListPage() throws Exception {
         //given
-        ByteArrayInputStream inputStream = new ByteArrayInputStream("Bookname".getBytes());
-        listOfBookPage = new ListOfBookPage(bookService, mock(PrintStream.class), inputStream);
+        listOfBookPage = new ListOfBookPage(bookService, mock(PrintStream.class));
 
         //when
         listOfBookPage.execute();
@@ -39,8 +37,7 @@ public class ListOfBookPageTest {
     @Test
     public void shouldReturnMenuPageWhenUserInputBack() throws Exception {
         //given
-        ByteArrayInputStream inputStream = new ByteArrayInputStream("back".getBytes());
-        listOfBookPage = new ListOfBookPage(bookService, mock(PrintStream.class), inputStream);
+        listOfBookPage = new ListOfBookPage(bookService, mock(PrintStream.class));
 
         //when
         String nextPage = listOfBookPage.execute();

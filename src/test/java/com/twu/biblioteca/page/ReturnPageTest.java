@@ -31,7 +31,7 @@ public class ReturnPageTest {
         returnPage.execute();
 
         //then
-        verify(bookService, times(1)).checkoutBookByName(bookName);
+        verify(bookService, times(1)).returnBookByName(bookName);
         verify(printStream).println("Thank you for returning the book.");
     }
 
@@ -42,13 +42,13 @@ public class ReturnPageTest {
         String bookName = "SICP";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(bookName.getBytes());
         ReturnPage returnPage = new ReturnPage(bookService, printStream, inputStream);
-        doThrow(BookNotReturnableException.class).when(bookService).checkoutBookByName(eq(bookName));
+        doThrow(BookNotReturnableException.class).when(bookService).returnBookByName(eq(bookName));
 
         //when
         returnPage.execute();
 
         //then
-        verify(bookService, times(1)).checkoutBookByName(bookName);
+        verify(bookService, times(1)).returnBookByName(bookName);
         verify(printStream).println("That is not a valid book to return.");
     }
 }

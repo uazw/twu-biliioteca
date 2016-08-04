@@ -18,9 +18,9 @@ public class MenuPage implements Page {
 
     @Override
     public String execute() {
-        printStream.println("plase input next page you wanna go(List Books, Checkout Book, Return Book, Quit): ");
+        printStream.println("plase input next page you wanna go(List Books, Checkout Book, Return Book, List Movies, Checkout Movie, Quit): ");
         String nextPageName = scanner.nextLine();
-        if (newArrayList("List Books", "Checkout Book", "Return Book").contains(nextPageName)) {
+        if (newArrayList("List Books", "Checkout Book", "Return Book", "List Movies, Checkout Movie").contains(nextPageName)) {
             return nextPageName;
         } else if (nextPageName.equals("Quit")) {
             return "";

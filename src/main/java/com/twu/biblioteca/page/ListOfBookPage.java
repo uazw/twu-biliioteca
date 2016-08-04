@@ -2,9 +2,7 @@ package com.twu.biblioteca.page;
 
 import com.twu.biblioteca.BookService;
 
-import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.Scanner;
 
 import static java.util.stream.Collectors.joining;
 
@@ -12,29 +10,14 @@ public class ListOfBookPage implements Page {
 
     private final BookService bookService;
     private final PrintStream printStream;
-    private final Scanner scanner;
 
-    public ListOfBookPage(BookService bookService, PrintStream printStream, InputStream inputStream) {
+    public ListOfBookPage(BookService bookService, PrintStream printStream) {
         this.bookService = bookService;
         this.printStream = printStream;
-        scanner = new Scanner(inputStream);
     }
 
     @Override
     public String execute() {
-        showBooks();
-        return acceptUserInput();
-    }
-
-    private String acceptUserInput() {
-        String input = scanner.next();
-        if (input.equals("back")) {
-            return "Menu";
-        }
-        return "";
-    }
-
-    private void showBooks() {
         String books = bookService
                 .allExistedBooks()
                 .stream()
@@ -42,5 +25,8 @@ public class ListOfBookPage implements Page {
                 .collect(joining("\n"));
 
         printStream.println(books);
+
+        return "Menu";
     }
+
 }
