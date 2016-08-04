@@ -1,9 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.page.CheckoutPage;
-import com.twu.biblioteca.page.ListOfBookPage;
-import com.twu.biblioteca.page.ReturnPage;
-import com.twu.biblioteca.page.WelcomePage;
+import com.twu.biblioteca.page.*;
 
 import static java.lang.System.in;
 import static java.lang.System.out;
@@ -16,9 +13,10 @@ public class BibliotecaApp {
 
         Router router = builder
                 .path("welcome", new WelcomePage(out))
-                .path("books", new ListOfBookPage(bookService, out, in))
-                .path("checkout", new CheckoutPage(bookService, out, in))
-                .path("return", new ReturnPage(bookService, out, in))
+                .path("List Books", new ListOfBookPage(bookService, out, in))
+                .path("Checkout Book", new CheckoutPage(bookService, out, in))
+                .path("Return Book", new ReturnPage(bookService, out, in))
+                .path("Menu", new MenuPage(out, in))
                 .defaultPath("welcome")
                 .build();
 

@@ -1,5 +1,6 @@
 package com.twu.biblioteca.page;
 
+import com.twu.biblioteca.BookNotReturnableException;
 import com.twu.biblioteca.BookService;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,6 +42,7 @@ public class ReturnPageTest {
         String bookName = "SICP";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(bookName.getBytes());
         ReturnPage returnPage = new ReturnPage(bookService, printStream, inputStream);
+        doThrow(BookNotReturnableException.class).when(bookService).checkoutBookByName(eq(bookName));
 
         //when
         returnPage.execute();

@@ -23,11 +23,11 @@ public class CheckoutPage implements Page {
     public String execute() {
         printStream.println("Please input the book's name you want to checkout: ");
         try {
-            bookService.checkoutBookByName(scanner.next());
+            bookService.checkoutBookByName(scanner.nextLine());
+            printStream.println("Thank you! Enjoy the book");
         } catch (BookNotAvailableException ex) {
             printStream.println("That book is not available.");
         }
-        printStream.println("Thank you! Enjoy the book");
-        return "menu";
+        return "Menu";
     }
 }

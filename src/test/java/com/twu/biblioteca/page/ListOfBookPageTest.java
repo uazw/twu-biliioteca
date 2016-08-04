@@ -46,6 +46,6 @@ public class ListOfBookPageTest {
         String nextPage = listOfBookPage.execute();
 
         //then
-        assertThat(nextPage, is("menu"));
+        assertThat(nextPage, is("Menu"));
     }
 }

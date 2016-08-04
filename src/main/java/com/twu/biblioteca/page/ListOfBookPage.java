@@ -29,7 +29,7 @@ public class ListOfBookPage implements Page {
     private String acceptUserInput() {
         String input = scanner.next();
         if (input.equals("back")) {
-            return "menu";
+            return "Menu";
         }
         return "";
     }

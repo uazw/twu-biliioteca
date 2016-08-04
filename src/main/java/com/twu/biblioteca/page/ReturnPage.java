@@ -23,11 +23,11 @@ public class ReturnPage implements Page {
     public String execute() {
         printStream.println("Please input book name you want to return: ");
         try {
-            bookService.checkoutBookByName(scanner.next());
+            bookService.returnBookByName(scanner.nextLine());
             printStream.println("Thank you for returning the book.");
         } catch (BookNotReturnableException ex) {
             printStream.println("That is not a valid book to return.");
         }
-        return "menu";
+        return "Menu";
     }
 }

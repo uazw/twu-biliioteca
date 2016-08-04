@@ -13,6 +13,6 @@ public class WelcomePage implements Page {
     @Override
     public String execute() {
         printStream.println("welcome");
-        return "books";
+        return "Menu";
     }
 }

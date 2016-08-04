@@ -40,7 +40,7 @@ public class BookServiceTest {
         assertThat(bookService.allExistedBooks().size(), is(2));
     }
 
-    @Test(expected = BookNotAvailableException.class)
+    @Test(expected = BookNotReturnableException.class)
     public void shouldThrowExceptionWhenGivenAnNotExistedBook() throws Exception {
         //given
 
@@ -51,7 +51,7 @@ public class BookServiceTest {
 
     }
 
-    @Test(expected = BookNotAvailableException.class)
+    @Test(expected = BookNotReturnableException.class)
     public void shouldFailToCheckoutWhenGivenAnAlreadyCheckoutBook() throws Exception {
         //given
         bookService.checkoutBookByName("SICP");
