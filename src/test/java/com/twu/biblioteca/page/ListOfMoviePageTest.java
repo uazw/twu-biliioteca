@@ -1,6 +1,7 @@
 package com.twu.biblioteca.page;
 
 import com.twu.biblioteca.MovieService;
+import com.twu.biblioteca.framework.Session;
 import org.junit.Test;
 
 import java.io.PrintStream;
@@ -16,7 +17,7 @@ public class ListOfMoviePageTest {
         ListOfMoviePage listOfMoviePage = new ListOfMoviePage(movieService, mock(PrintStream.class));
 
         //when
-        listOfMoviePage.execute();
+        listOfMoviePage.execute(new Session());
 
         //then
         verify(movieService, times(1)).allAvailableMovies();

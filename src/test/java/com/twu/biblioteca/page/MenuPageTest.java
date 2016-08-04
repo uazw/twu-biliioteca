@@ -1,5 +1,6 @@
 package com.twu.biblioteca.page;
 
+import com.twu.biblioteca.framework.Session;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -21,7 +22,7 @@ public class MenuPageTest {
         MenuPage menuPage = new MenuPage(mock(PrintStream.class), inputStream);
 
         //when
-        String nextPageName = menuPage.execute();
+        String nextPageName = menuPage.execute(new Session());
 
         //then
         assertThat(nextPageName, is(bookListPage));
@@ -36,7 +37,7 @@ public class MenuPageTest {
         MenuPage menuPage = new MenuPage(printStream, inputStream);
 
         //when
-        menuPage.execute();
+        menuPage.execute(new Session());
 
         //then
         verify(printStream).println("Select a valid option!");
@@ -51,7 +52,7 @@ public class MenuPageTest {
         MenuPage menuPage = new MenuPage(printStream, inputStream);
 
         //when
-        String nextPageName = menuPage.execute();
+        String nextPageName = menuPage.execute(new Session());
 
         //then
         assertThat(nextPageName, is(""));

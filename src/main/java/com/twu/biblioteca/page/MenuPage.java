@@ -1,5 +1,8 @@
 package com.twu.biblioteca.page;
 
+import com.twu.biblioteca.framework.Page;
+import com.twu.biblioteca.framework.Session;
+
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
@@ -17,7 +20,7 @@ public class MenuPage implements Page {
     }
 
     @Override
-    public String execute() {
+    public String execute(Session session) {
         printStream.println("plase input next page you wanna go(List Books, Checkout Book, Return Book, List Movies, Checkout Movie, Quit): ");
         String nextPageName = scanner.nextLine();
         if (newArrayList("List Books", "Checkout Book", "Return Book", "List Movies", "Checkout Movie").contains(nextPageName)) {

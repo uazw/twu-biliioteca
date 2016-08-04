@@ -1,6 +1,8 @@
 package com.twu.biblioteca.page;
 
 import com.twu.biblioteca.MovieService;
+import com.twu.biblioteca.framework.Page;
+import com.twu.biblioteca.framework.Session;
 
 import java.io.PrintStream;
 
@@ -17,7 +19,7 @@ public class ListOfMoviePage implements Page {
     }
 
     @Override
-    public String execute() {
+    public String execute(Session session) {
         String movies = movieService
                 .allAvailableMovies()
                 .stream()

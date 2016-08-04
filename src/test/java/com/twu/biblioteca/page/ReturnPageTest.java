@@ -2,6 +2,7 @@ package com.twu.biblioteca.page;
 
 import com.twu.biblioteca.BookNotReturnableException;
 import com.twu.biblioteca.BookService;
+import com.twu.biblioteca.framework.Session;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,7 +29,7 @@ public class ReturnPageTest {
         ReturnPage returnPage = new ReturnPage(bookService, printStream, inputStream);
 
         //when
-        returnPage.execute();
+        returnPage.execute(new Session());
 
         //then
         verify(bookService, times(1)).returnBookByName(bookName);
@@ -45,7 +46,7 @@ public class ReturnPageTest {
         doThrow(BookNotReturnableException.class).when(bookService).returnBookByName(eq(bookName));
 
         //when
-        returnPage.execute();
+        returnPage.execute(new Session());
 
         //then
         verify(bookService, times(1)).returnBookByName(bookName);

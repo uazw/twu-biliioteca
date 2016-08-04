@@ -1,6 +1,8 @@
 package com.twu.biblioteca.page;
 
 import com.twu.biblioteca.MovieService;
+import com.twu.biblioteca.framework.Page;
+import com.twu.biblioteca.framework.Session;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -19,7 +21,7 @@ public class CheckoutMoviePage implements Page {
     }
 
     @Override
-    public String execute() {
+    public String execute(Session session) {
         printStream.println("Please select the movie you want to checkout out");
         String movieName = scanner.nextLine();
         movieService.checkoutMovie(movieName);

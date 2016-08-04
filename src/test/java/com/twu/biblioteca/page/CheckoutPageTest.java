@@ -2,6 +2,7 @@ package com.twu.biblioteca.page;
 
 import com.twu.biblioteca.BookNotAvailableException;
 import com.twu.biblioteca.BookService;
+import com.twu.biblioteca.framework.Session;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,7 +31,7 @@ public class CheckoutPageTest {
         String bookName = "SICP";
 
         //when
-        checkoutPage.execute();
+        checkoutPage.execute(new Session());
 
         //then
         verify(bookService, times(1)).checkoutBookByName(bookName);
@@ -46,7 +47,7 @@ public class CheckoutPageTest {
         doThrow(BookNotAvailableException.class).when(bookService).checkoutBookByName(eq(bookName));
 
         //when
-        checkoutPage.execute();
+        checkoutPage.execute(new Session());
 
         //then
         verify(bookService, times(1)).checkoutBookByName(bookName);

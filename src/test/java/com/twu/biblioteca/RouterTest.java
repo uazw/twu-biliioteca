@@ -1,5 +1,8 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.framework.Router;
+import com.twu.biblioteca.framework.RouterBuilder;
+import com.twu.biblioteca.framework.Session;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,7 +37,7 @@ public class RouterTest {
         router.start();
 
         //then
-        verify(firstPage, times(1)).execute();
+        verify(firstPage, times(1)).execute(any(Session.class));
     }
 
     @Test
@@ -45,20 +48,21 @@ public class RouterTest {
         router.start();
 
         //then
-        verify(firstPage, times(1)).execute();
-        verify(secondPage, times(1)).execute();
+        verify(firstPage, times(1)).execute(any(Session.class));
+        verify(secondPage, times(1)).execute(any(Session.class));
     }
 
     @Test
     public void shouldNotJumpToAnotherPageWhenLastPageReturnEmptyString() throws Exception {
         //given
+        Session session = new Session();
 
         //when
         router.start();
 
         //then
-        verify(firstPage, times(1)).execute();
-        verify(secondPage, times(1)).execute();
-        verify(thirdPage, never()).execute();
+        verify(firstPage, times(1)).execute(any(Session.class));
+        verify(secondPage, times(1)).execute(any(Session.class));
+        verify(thirdPage, never()).execute(any(Session.class));
     }
 }

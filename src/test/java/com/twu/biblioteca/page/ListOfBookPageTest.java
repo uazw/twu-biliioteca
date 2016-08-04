@@ -1,6 +1,7 @@
 package com.twu.biblioteca.page;
 
 import com.twu.biblioteca.BookService;
+import com.twu.biblioteca.framework.Session;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,7 +29,7 @@ public class ListOfBookPageTest {
         listOfBookPage = new ListOfBookPage(bookService, mock(PrintStream.class));
 
         //when
-        listOfBookPage.execute();
+        listOfBookPage.execute(new Session());
 
         //then
         verify(bookService, times(1)).allExistedBooks();
@@ -40,7 +41,7 @@ public class ListOfBookPageTest {
         listOfBookPage = new ListOfBookPage(bookService, mock(PrintStream.class));
 
         //when
-        String nextPage = listOfBookPage.execute();
+        String nextPage = listOfBookPage.execute(new Session());
 
         //then
         assertThat(nextPage, is("Menu"));

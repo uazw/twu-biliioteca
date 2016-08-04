@@ -1,6 +1,7 @@
 package com.twu.biblioteca.page;
 
 import com.twu.biblioteca.MovieService;
+import com.twu.biblioteca.framework.Session;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -21,7 +22,7 @@ public class CheckoutMoviePageTest {
         CheckoutMoviePage checkoutMoviePage = new CheckoutMoviePage(movieService, printStream, inputStream);
 
         //when
-        checkoutMoviePage.execute();
+        checkoutMoviePage.execute(new Session());
 
         //then
         verify(movieService, times(1)).checkoutMovie(movieName);

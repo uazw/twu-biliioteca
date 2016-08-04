@@ -2,6 +2,8 @@ package com.twu.biblioteca.page;
 
 import com.twu.biblioteca.BookNotAvailableException;
 import com.twu.biblioteca.BookService;
+import com.twu.biblioteca.framework.Page;
+import com.twu.biblioteca.framework.Session;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -20,7 +22,7 @@ public class CheckoutPage implements Page {
     }
 
     @Override
-    public String execute() {
+    public String execute(Session session) {
         printStream.println("Please input the book's name you want to checkout: ");
         try {
             bookService.checkoutBookByName(scanner.nextLine());
