@@ -28,6 +28,7 @@ public class LoginPage implements Page {
         String password = scanner.nextLine();
         boolean match = accountService.isMatch(account, password);
         if (match) {
+            session.setAccount(account);
             return "Menu";
         } else {
            return "Login";

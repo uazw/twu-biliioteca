@@ -24,6 +24,7 @@ public class BibliotecaApp {
                 .path("Checkout Movie", new CheckoutMoviePage(movieService, out, in))
                 .path("Menu", new MenuPage(out, in))
                 .path("Login", new LoginPage(accountService, out, in))
+                .path("UserDetail", new UserDetailPage(accountService, out))
                 .defaultPath("welcome")
                 .build();
 
