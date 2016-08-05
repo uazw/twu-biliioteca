@@ -25,7 +25,7 @@ public class CheckoutPage implements Page {
     public String execute(Session session) {
         printStream.println("Please input the book's name you want to checkout: ");
         try {
-            bookService.checkoutBookByName(scanner.nextLine());
+            bookService.checkoutBookByName(scanner.nextLine(), session);
             printStream.println("Thank you! Enjoy the book");
         } catch (BookNotAvailableException ex) {
             printStream.println("That book is not available.");

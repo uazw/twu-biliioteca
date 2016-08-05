@@ -29,12 +29,13 @@ public class CheckoutPageTest {
         InputStream in = new ByteArrayInputStream("SICP".getBytes());
         checkoutPage = new CheckoutPage(bookService, out, in);
         String bookName = "SICP";
+        Session session = new Session();
 
         //when
-        checkoutPage.execute(new Session());
+        checkoutPage.execute(session);
 
         //then
-        verify(bookService, times(1)).checkoutBookByName(bookName);
+        verify(bookService, times(1)).checkoutBookByName(bookName, session);
         verify(out).println("Thank you! Enjoy the book");
     }
     @Test
@@ -44,13 +45,14 @@ public class CheckoutPageTest {
         String bookName = "SICP";
         InputStream in = new ByteArrayInputStream(bookName.getBytes());
         checkoutPage = new CheckoutPage(bookService, out, in);
-        doThrow(BookNotAvailableException.class).when(bookService).checkoutBookByName(eq(bookName));
+        Session session = new Session();
+        doThrow(BookNotAvailableException.class).when(bookService).checkoutBookByName(eq(bookName), eq(session));
 
         //when
-        checkoutPage.execute(new Session());
+        checkoutPage.execute(session);
 
         //then
-        verify(bookService, times(1)).checkoutBookByName(bookName);
+        verify(bookService, times(1)).checkoutBookByName(bookName, session);
         verify(out).println("That book is not available.");
     }
 }

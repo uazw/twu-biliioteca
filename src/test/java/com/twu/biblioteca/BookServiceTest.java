@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.framework.Session;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,9 +33,11 @@ public class BookServiceTest {
     @Test
     public void shouldCheckoutSuccessfullyWhenGivenAnExistedBook() throws Exception {
         //given
+        Session session = new Session();
+        session.setAccount("123-4567");
 
         //when
-        bookService.checkoutBookByName("SICP");
+        bookService.checkoutBookByName("SICP", session);
 
         //then
         assertThat(bookService.allExistedBooks().size(), is(2));
@@ -43,9 +46,11 @@ public class BookServiceTest {
     @Test(expected = BookNotAvailableException.class)
     public void shouldThrowExceptionWhenGivenAnNotExistedBook() throws Exception {
         //given
+        Session session = new Session();
+        session.setAccount("123-4567");
 
         //when
-        bookService.checkoutBookByName("Data Structure");
+        bookService.checkoutBookByName("Data Structure", session);
 
         //then
 
@@ -54,10 +59,13 @@ public class BookServiceTest {
     @Test(expected = BookNotAvailableException.class)
     public void shouldFailToCheckoutWhenGivenAnAlreadyCheckoutBook() throws Exception {
         //given
-        bookService.checkoutBookByName("SICP");
+        Session session = new Session();
+        session.setAccount("123-4567");
+
 
         //when
-        bookService.checkoutBookByName("SICP");
+        bookService.checkoutBookByName("SICP", session);
+        bookService.checkoutBookByName("SICP", session);
 
         //then
     }
@@ -65,7 +73,10 @@ public class BookServiceTest {
     @Test
     public void shouldUserCanCheckoutBookSuccessfullyWhenGivenAnAlreadyCheckoutBook() throws Exception {
         //given
-        bookService.checkoutBookByName("SICP");
+        Session session = new Session();
+        session.setAccount("123-4567");
+
+        bookService.checkoutBookByName("SICP", session);
 
         //when
         bookService.returnBookByName("SICP");
@@ -75,7 +86,7 @@ public class BookServiceTest {
     }
 
     @Test(expected = BookNotReturnableException.class)
-    public void shouldThrowExceptionWhenGivenHavenotCheckoutedBook() throws Exception {
+    public void shouldThrowExceptionWhenGivenBookNotReturnable() throws Exception {
         //given
 
         //when
